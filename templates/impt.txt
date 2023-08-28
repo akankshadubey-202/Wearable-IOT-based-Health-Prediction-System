@@ -11,6 +11,7 @@
             crossorigin="anonymous"></script>
      <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="home.css">
@@ -21,7 +22,6 @@
 
     <title>Admin Dashboard Panel</title>
     <style>
-        /* ===== Google Font Import - Poppins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 *{
     margin: 0;
@@ -234,8 +234,6 @@ body.dark .switch:before{
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition: var(--tran-05);
-    background: url("https://st3.depositphotos.com/13349494/17896/i/450/depositphotos_178964958-stock-photo-container-scattered-pills-stethoscope-isolated.jpg");
-    background-size: cover;
 }
 nav.close ~ .dashboard{
     left: 73px;
@@ -585,7 +583,13 @@ ul li:before {
 }
 
 .c-section {
-    padding: 0 var(--s3);
+    padding:10px;
+    display: flex;
+    margin-top: 20%;
+}
+.c-section.chart{
+    flex-direction : column ;
+    margin-left:10%;
 }
 
 .c-section__title {
@@ -890,108 +894,10 @@ ul li:before {
             text-decoration: none;
             color: inherit;
         }
-input {
-  caret-color: red;
-}
-.inputs {
-  text-align: left;
-  margin-top: 30px;
-}
-.form_css{
-    margin-top: 10%;
-    margin-left: 30%;
-    position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 20px;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-  background:url("https://media.istockphoto.com/id/911633218/vector/abstract-geometric-medical-cross-shape-medicine-and-science-concept-background.jpg?s=612x612&w=0&k=20&c=eYz8qm5xa5wbWCWKgjOpTamavekYv8XqPTA0MC4tHGA=") ;
-  background-size: cover;
-
-}
-.brand-title {
-  margin-top: 10px;
-  font-weight: 900;
-  font-size: 3rem;
-  color: #01263d;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-label, input, button {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  font-weight: 500;
-}
-
-label {
-  margin-bottom: 4px;
-}
-
-label:nth-of-type(2) {
-  margin-top: 12px;
-}
-
-input::placeholder {
-  color: gray;
-}
-
-input {
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 50px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-}
-
-button {
-  color: white;
-  margin-top: 20px;
-  background: #1DA1F2;
-  height: 40px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 900;
-  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-  transition: 0.5s;
-  margin-top:20%;
-}
-
-button:hover {
-  box-shadow: none;
-}
-
-a {
-  position: absolute;
-  font-size: 8px;
-  bottom: 4px;
-  right: 4px;
-  text-decoration: none;
-  color: black;
- 
-  border-radius: 10px;
-  padding: 2px;
-}
-
-h1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-    </style>
+        </style>
 </head>
 <body>
-     <nav>
+    <nav>
         <div class="logo-name">
             <div class="logo-image">
                <img src="images/logo.png" alt="">
@@ -1048,21 +954,45 @@ h1 {
             </div>
             
             <a href="/get_user_data" class="back-button">
-        <i class="fas fa-arrow-left"></i>BACK
+        <i class="fas fa-arrow-left">BACK</i>
     </a>
         </div>
-         
-    <div class="form_css">
-        <div class="brand-title">PREDICTION</div>
-        <div class="inputs">
-   <form action="/get_health_data" method="POST">
-    <label for="user_id">Enter User ID:</label>
-    <input type="text" id="user_id" name="user_id" required>
-    <button type="submit">Fetch Data</button>
-    </form>
-        </div>
-       
-    </div>
+          <section class="c-section">
+            <div class="chart">
+<h1>Gender Distribution</h1>
+ <canvas id="genderChart" width="400" height="400"></canvas>
+            </div>
+       <div class="chart">
+        <h1>Health Condition Pie Chart</h1>
+    <canvas id="healthChart" width="400" height="400"></canvas>
+
+       </div>
+<div class="chart">
+    <h1>Age Group Distribution</h1>
+ <canvas id="ageChart" width="400" height="400"></canvas>
+</div>
+
+</section>  
+
+<div class="userdata">
+      <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users_data %}
+                <tr>
+                    <td>{{ user['username'] }}</td>
+                    <td>{{ user['first_name'] }} {{user['last_name']}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
         </section>
 <script>
     const body = document.querySelector("body"),
@@ -1097,7 +1027,125 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
-</script>
+ var healthCounts = {{ counts_dict | tojson | safe }};
+
+        // Get the gender counts data passed from Flask
+        var genderCounts = {{ gen_count | tojson | safe }};
+
+        var ageCounts={{age_count | tojson | safe}};
+
+        // Extract labels and data for health counts
+        var healthLabels = Object.keys(healthCounts);
+        var healthData = Object.values(healthCounts);
+
+        // Extract labels and data for gender counts
+        var genderLabels = Object.keys(genderCounts);
+        var genderData = Object.values(genderCounts);
+
+        var ageLabels = Object.keys(ageCounts);
+        var ageData = Object.values(ageCounts);
+
+        // Create a new Chart.js pie chart for health counts
+        var healthCtx = document.getElementById('healthChart').getContext('2d');
+        var healthChart = new Chart(healthCtx, {
+            type: 'pie',
+            data: {
+                labels: healthLabels,
+                datasets: [{
+                    data: healthData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(153, 102, 255, 0.5)',
+                        'rgba(255, 159, 64, 0.5)',
+                        'rgba(255, 99, 132, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false, // Set to true for responsive sizing
+                maintainAspectRatio: false, // Set to true to maintain aspect ratio
+            }
+        });
+
+        // Create a new Chart.js pie chart for gender counts
+        var genderCtx = document.getElementById('genderChart').getContext('2d');
+        var genderChart = new Chart(genderCtx, {
+            type: 'pie',
+            data: {
+                labels: genderLabels,
+                datasets: [{
+                    data: genderData,
+                    backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)'],
+                  borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                      
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false, // Set to true for responsive sizing
+                maintainAspectRatio: false, // Set to true to maintain aspect ratio
+            }
+        });
+        var ageCtx = document.getElementById('ageChart').getContext('2d');
+        var ageChart = new Chart(ageCtx, {
+            type: 'pie',
+            data: {
+                labels: ageLabels,
+                datasets: [{
+                    data: ageData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(153, 102, 255, 0.5)'
+                       
+                        
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                      
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false, // Set to true for responsive sizing
+                maintainAspectRatio: false, // Set to true to maintain aspect ratio
+            }
+        });
+
+    </script>
    
 </body>
 </html>
+
+
+ <tbody>
+            {% for user in users_data %}
+                <tr>
+                    <td>{{ user['username'] }}</td>
+                    <td>{{ user['first_name'] }} {{user['last_name']}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>

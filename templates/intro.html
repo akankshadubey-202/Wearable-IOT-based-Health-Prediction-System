@@ -13,14 +13,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="home.css">
+   <link rel="stylesheet" href="home.css">
   <link rel="shortcut icon" href="./img/favicon-16x16.png" type="image/x-icon">
   <script src="home.js"></script>
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <title>Admin Dashboard Panel</title>
-    <style>
+ <style>
         /* ===== Google Font Import - Poppins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 *{
@@ -234,8 +234,6 @@ body.dark .switch:before{
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition: var(--tran-05);
-    background: url("https://st3.depositphotos.com/13349494/17896/i/450/depositphotos_178964958-stock-photo-container-scattered-pills-stethoscope-isolated.jpg");
-    background-size: cover;
 }
 nav.close ~ .dashboard{
     left: 73px;
@@ -890,108 +888,171 @@ ul li:before {
             text-decoration: none;
             color: inherit;
         }
-input {
-  caret-color: red;
+        @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,900');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+body
+{
+	margin:0;
+	padding:0;
+	background:#fff;
+	font-family: 'Nunito Sans', sans-serif;
 }
-.inputs {
-  text-align: left;
-  margin-top: 30px;
-}
-.form_css{
-    margin-top: 10%;
-    margin-left: 30%;
-    position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 20px;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-  background:url("https://media.istockphoto.com/id/911633218/vector/abstract-geometric-medical-cross-shape-medicine-and-science-concept-background.jpg?s=612x612&w=0&k=20&c=eYz8qm5xa5wbWCWKgjOpTamavekYv8XqPTA0MC4tHGA=") ;
-  background-size: cover;
-
-}
-.brand-title {
-  margin-top: 10px;
-  font-weight: 900;
-  font-size: 3rem;
-  color: #01263d;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-label, input, button {
-  display: block;
-  width: 100%;
+a
+{	text-decoration:none;	}
+ul {
+  margin: 0;
   padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  font-weight: 500;
+  list-style: none;
 }
-
-label {
-  margin-bottom: 4px;
+.outer
+{    margin-top:60px;
+	width:90%;
+	height:100vh;
+	background:url('https://img.freepik.com/free-vector/clean-medical-background-with-frame-vector_53876-165012.jpg?w=740&t=st=1692692009~exp=1692692609~hmac=79389479d45a41974ed786aec22383b1e9f401e1cd0bcabf79be876b7c712ffa') no-repeat center center fixed;
+	background-size:cover;
+	position: fixed;
 }
+.inner
+{
+	width:100%;
+	height:100vh;
+	background:transparent;
+	display:flex;
+	text-align:center;
+	align-items:center;
+	transition:all 0.3s linear;
+	z-index:0;
+	border-radius:3px;
+	box-shadow: 0 0px 20px rgba(0,0,0,0.29), 0 0px 6px rgba(0,0,0,0.35);
+	background:url('../bg7.svg') no-repeat center center fixed;
+	background-size:cover;
+	}
+.inner-hover
+{
+    transform-origin: 75% 50%;
+    transform: scale(0.85,0.85);
 
-label:nth-of-type(2) {
-  margin-top: 12px;
 }
-
-input::placeholder {
-  color: gray;
+.prod-logo
+{
+    width: 7%;
+    height: 100vh;
+	position:absolute;
+	left:0;right:0;
+	z-index:1;
+	padding:20px 0 0 20px;
 }
-
-input {
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 50px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+.prod-img
+{
+	width:70px;
+	height:70px;
+	margin:0px auto;
+	border-radius:3px;
+	padding:5px;
+	transition:background 0.3s linear;
 }
-
-button {
-  color: white;
-  margin-top: 20px;
-  background: #1DA1F2;
-  height: 40px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 900;
-  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-  transition: 0.5s;
-  margin-top:20%;
+.prod-left
+{
+	width:55%;
+	text-align:left;
+	padding-left:75px;
 }
-
-button:hover {
-  box-shadow: none;
+.prod-right
+{
+	width:45%;
+   
 }
-
-a {
+.prod-human-img
+{
+	width:650px;
+	height:600px;
+}
+.prod-head
+{
+	margin-left:-5px !important;
+	text-align:left;
+	font-weight:800;
+	font-size:80pt;
+	color:#6f7576;
+	margin:0;
+}
+.prod-head-sub
+{
+   font-weight:400;
+	font-size:25pt;
+	color:#6f7576;
+	margin:0 auto;
+}
+.prod-logo:hover .prod-img
+{
+	background:#fff;
+	box-shadow:0 2px 2px 0 rgba(0, 0, 0, 0.09), 0 3px 2px -2px rgba(0, 0, 0, 0.07), 0 1px 5px 0 rgba(0, 0, 0, 0.08);
+}
+.main-nav {
+	float:left;
+	transition: all 2s;
+}
+.main-nav a {
+	font-family: 'Raleway', sans-serif;
+	text-align: left;
+	display: block;
+	color: #0f457f;
+	font-size:15pt;
+	font-weight:600;
+}
+.nav-li
+{
+	cursor:pointer;
+	line-height:2;
+	display: none;
+}
+.nav-li a {
+  position: relative;
+}
+.nav-li a:after {    
+  background: none repeat scroll 0 0 transparent;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 0%;
   position: absolute;
-  font-size: 8px;
-  bottom: 4px;
-  right: 4px;
-  text-decoration: none;
-  color: black;
- 
-  border-radius: 10px;
-  padding: 2px;
+  background: #0f457f;
+  transition: width 0.4s ease 0s;
+  width: 0;
 }
-
-h1 {
-  position: absolute;
-  top: 0;
-  left: 0;
+.nav-li a:hover:after { 
+  width: 100%; 
 }
-
+button{
+    margin-top: 20px;
+ display: inline-block;
+                outline: 0;
+                border: 0;
+                cursor: pointer;
+                will-change: box-shadow,transform;
+                background: radial-gradient( 100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100% );
+                box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px rgb(58 65 111 / 50%);
+                padding: 0 32px;
+                border-radius: 6px;
+                color: #fff;
+                height: 48px;
+                font-size: 18px;
+                text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+                transition: box-shadow 0.15s ease,transform 0.15s ease;
+                :hover {
+                    box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #3c4fe0;
+                    transform: translateY(-2px);
+                }
+                :active{
+                    box-shadow: inset 0px 3px 7px #3c4fe0;
+                    transform: translateY(2px);
+                }
+                
+}
     </style>
 </head>
 <body>
-     <nav>
+ <nav>
         <div class="logo-name">
             <div class="logo-image">
                <img src="images/logo.png" alt="">
@@ -1002,9 +1063,13 @@ h1 {
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="/get_user_data">
+                <li><a href="/home">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dahsboard</span>
+                </a></li>
+                <li><a href="/home">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Services</span>
                 </a></li>
                 <li><a href="/user-profile">
                     <i class="uil uil-chart"></i>
@@ -1013,6 +1078,10 @@ h1 {
                 <li><a href="/predictions">
                     <i class="uil uil-thumbs-up"></i>
                     <span class="link-name">User Health Analysis</span>
+                </a></li>
+                <li><a href="/get_health_data">
+                    <i class="uil uil-comments"></i>
+                    <span class="link-name">Trends</span>
                 </a></li>
                 <li><a href="/upload">
                     <i class="uil uil-share"></i>
@@ -1047,24 +1116,30 @@ h1 {
                 <input type="text" placeholder="Search here...">
             </div>
             
-            <a href="/get_user_data" class="back-button">
+            <a href="/" class="back-button">
         <i class="fas fa-arrow-left"></i>BACK
     </a>
         </div>
-         
-    <div class="form_css">
-        <div class="brand-title">PREDICTION</div>
-        <div class="inputs">
-   <form action="/get_health_data" method="POST">
-    <label for="user_id">Enter User ID:</label>
-    <input type="text" id="user_id" name="user_id" required>
-    <button type="submit">Fetch Data</button>
-    </form>
-        </div>
-       
-    </div>
+<div class="outer">
+	<div class="inner">
+		<div class="prod-left">
+			<h1 class="prod-head"><span style="color:#0f457f">HELLO</span>BUDDY</h1>
+			<h4 class="prod-head-sub">WELCOME TO YOUR FITNESS BUDDY !!</h4>
+           <button onclick="redirectToPage()">GET STARTED</button>
+            
+		</div>
+		<div class="prod-right">
+        <img src="{{ url_for('static', filename='images/Smartwatch-bro.png') }}" class="prod-human-img">
+		</div>
+	</div>
+</div>
+
         </section>
 <script>
+    function redirectToPage() {
+            // Replace 'destination-page.html' with the actual URL of the page you want to redirect to
+            window.location.href = '/start';
+        }
     const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");
@@ -1097,6 +1172,15 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
+$(".prod-logo").hover(function () {
+    $(".inner").addClass("inner-hover");
+    $(".nav-li").slideDown(500);
+  },
+  function () {
+    $(".inner").removeClass("inner-hover");
+   $(".nav-li").slideUp(500);
+  }
+);
 </script>
    
 </body>

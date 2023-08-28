@@ -12,7 +12,7 @@
      <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="home.css">
   <link rel="shortcut icon" href="./img/favicon-16x16.png" type="image/x-icon">
   <script src="home.js"></script>
@@ -234,8 +234,6 @@ body.dark .switch:before{
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition: var(--tran-05);
-    background: url("https://st3.depositphotos.com/13349494/17896/i/450/depositphotos_178964958-stock-photo-container-scattered-pills-stethoscope-isolated.jpg");
-    background-size: cover;
 }
 nav.close ~ .dashboard{
     left: 73px;
@@ -890,114 +888,19 @@ ul li:before {
             text-decoration: none;
             color: inherit;
         }
-input {
-  caret-color: red;
+.chart{
+    margin-top:49px;
 }
-.inputs {
-  text-align: left;
-  margin-top: 30px;
-}
-.form_css{
-    margin-top: 10%;
-    margin-left: 30%;
-    position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 20px;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-  background:url("https://media.istockphoto.com/id/911633218/vector/abstract-geometric-medical-cross-shape-medicine-and-science-concept-background.jpg?s=612x612&w=0&k=20&c=eYz8qm5xa5wbWCWKgjOpTamavekYv8XqPTA0MC4tHGA=") ;
-  background-size: cover;
-
-}
-.brand-title {
-  margin-top: 10px;
-  font-weight: 900;
-  font-size: 3rem;
-  color: #01263d;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-label, input, button {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  font-weight: 500;
-}
-
-label {
-  margin-bottom: 4px;
-}
-
-label:nth-of-type(2) {
-  margin-top: 12px;
-}
-
-input::placeholder {
-  color: gray;
-}
-
-input {
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 50px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-}
-
-button {
-  color: white;
-  margin-top: 20px;
-  background: #1DA1F2;
-  height: 40px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 900;
-  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-  transition: 0.5s;
-  margin-top:20%;
-}
-
-button:hover {
-  box-shadow: none;
-}
-
-a {
-  position: absolute;
-  font-size: 8px;
-  bottom: 4px;
-  right: 4px;
-  text-decoration: none;
-  color: black;
- 
-  border-radius: 10px;
-  padding: 2px;
-}
-
-h1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
     </style>
 </head>
 <body>
-     <nav>
+    <nav>
         <div class="logo-name">
             <div class="logo-image">
                <img src="images/logo.png" alt="">
             </div>
 
-            <span class="logo_name">Medi Traker</span>
+            <span class="logo_name">Medi Buddy</span>
         </div>
 
         <div class="menu-items">
@@ -1012,11 +915,11 @@ h1 {
                 </a></li>
                 <li><a href="/predictions">
                     <i class="uil uil-thumbs-up"></i>
-                    <span class="link-name">User Health Analysis</span>
+                    <span class="link-name">Health Analysis</span>
                 </a></li>
                 <li><a href="/upload">
                     <i class="uil uil-share"></i>
-                    <span class="link-name">Uplaod Report</span>
+                    <span class="link-name">Upload Report</span>
                 </a></li>
             </ul>
             
@@ -1047,22 +950,28 @@ h1 {
                 <input type="text" placeholder="Search here...">
             </div>
             
-            <a href="/get_user_data" class="back-button">
+            <a href="/get_health_data" class="back-button">
         <i class="fas fa-arrow-left"></i>BACK
     </a>
         </div>
-         
-    <div class="form_css">
-        <div class="brand-title">PREDICTION</div>
-        <div class="inputs">
-   <form action="/get_health_data" method="POST">
-    <label for="user_id">Enter User ID:</label>
-    <input type="text" id="user_id" name="user_id" required>
-    <button type="submit">Fetch Data</button>
-    </form>
-        </div>
-       
+         <section class="chart">
+             <div>
+        <canvas id="lineChart"></canvas>
     </div>
+    <div>
+        <canvas id="spo2Chart"></canvas>
+    </div>
+    <div>
+<canvas id="glucoChart"></canvas>
+    </div>
+    <div>
+<canvas id="bpchart"></canvas>
+    </div>
+    <div>
+<canvas id="tempchart"></canvas>
+    </div>
+         </section>
+
         </section>
 <script>
     const body = document.querySelector("body"),
@@ -1097,6 +1006,109 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
+ 
+        var dates = {{ dates | tojson }};
+        var heartRates = {{ heart_rates|tojson }};
+         var spo2_levels = {{ spo2_levels|tojson }};
+          var Respiratory_Rate = {{ Respiratory_Rate|tojson }};
+        var ubp = {{ ubp|tojson }};
+        var lowbp = {{ lowbp|tojson }};
+        var temp = {{ temp|tojson }};
+        var ctx = document.getElementById('lineChart').getContext('2d');
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Heart Rates',
+                    data: heartRates,
+                    borderColor: 'red',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+           var ctx = document.getElementById('spo2Chart').getContext('2d');
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Spo2 Level',
+                    data: spo2_levels,
+                    borderColor: 'blue',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+           var ctx = document.getElementById('glucoChart').getContext('2d');
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Respiratory_Rate',
+                    data: Respiratory_Rate,
+                    borderColor: 'green',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+        var ctx = document.getElementById('bpchart').getContext('2d');
+var lineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: dates,
+        datasets: [
+            {
+                label: 'Upper Blood Pressure Level',
+                data: ubp,
+                borderColor: 'pink',
+                fill: false
+            },
+            {
+                label: 'Lower Blood Pressure Level',
+                data: lowbp,
+                borderColor: 'grey',
+                fill: false
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+        var ctx = document.getElementById('tempchart').getContext('2d');
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Body Temperature',
+                    data: temp,
+                    borderColor: 'Orange',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    
 </script>
    
 </body>

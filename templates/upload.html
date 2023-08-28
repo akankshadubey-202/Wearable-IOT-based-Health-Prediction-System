@@ -12,6 +12,7 @@
      <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     
     <link rel="stylesheet" href="home.css">
   <link rel="shortcut icon" href="./img/favicon-16x16.png" type="image/x-icon">
@@ -890,104 +891,51 @@ ul li:before {
             text-decoration: none;
             color: inherit;
         }
-input {
-  caret-color: red;
-}
-.inputs {
-  text-align: left;
-  margin-top: 30px;
-}
-.form_css{
-    margin-top: 10%;
-    margin-left: 30%;
-    position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 20px;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-  background:url("https://media.istockphoto.com/id/911633218/vector/abstract-geometric-medical-cross-shape-medicine-and-science-concept-background.jpg?s=612x612&w=0&k=20&c=eYz8qm5xa5wbWCWKgjOpTamavekYv8XqPTA0MC4tHGA=") ;
-  background-size: cover;
-
-}
-.brand-title {
-  margin-top: 10px;
-  font-weight: 900;
-  font-size: 3rem;
-  color: #01263d;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-label, input, button {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  font-weight: 500;
-}
-
-label {
-  margin-bottom: 4px;
-}
-
-label:nth-of-type(2) {
-  margin-top: 12px;
-}
-
-input::placeholder {
-  color: gray;
-}
-
-input {
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 50px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-}
-
-button {
-  color: white;
-  margin-top: 20px;
-  background: #1DA1F2;
-  height: 40px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 900;
-  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-  transition: 0.5s;
-  margin-top:20%;
-}
-
-button:hover {
-  box-shadow: none;
-}
-
-a {
-  position: absolute;
-  font-size: 8px;
-  bottom: 4px;
-  right: 4px;
-  text-decoration: none;
-  color: black;
- 
+        .containers{
+   margin-top: 10%;
+   margin-left: 30%;
+  width: 600px;
+  height: 300px;
+  padding: 20px;
+  background-color: #fafafaa4;
   border-radius: 10px;
-  padding: 2px;
-}
 
-h1 {
-  position: absolute;
-  top: 0;
-  left: 0;
 }
-
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 3rem;
+}
+.inputs{
+     padding: 10px;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  border: none;
+  background-color: #1aa3bb;
+  border-radius: 5px;
+  width: 100%;
+  height: 50%;
+  cursor: pointer;
+}
+.finalmessage
+{   margin-top: 20%;
+    font-size: 4rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+button{
+    padding: 10px 20px;
+  background-color: #008CBA;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  margin-left: 5%;
+}
+button::after :hover{
+     background-color: #006F8F;
+}
     </style>
 </head>
 <body>
@@ -1051,18 +999,29 @@ h1 {
         <i class="fas fa-arrow-left"></i>BACK
     </a>
         </div>
-         
-    <div class="form_css">
-        <div class="brand-title">PREDICTION</div>
-        <div class="inputs">
-   <form action="/get_health_data" method="POST">
-    <label for="user_id">Enter User ID:</label>
-    <input type="text" id="user_id" name="user_id" required>
-    <button type="submit">Fetch Data</button>
+        
+<div class="finalmessage">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+<section class="containers">
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+       <label for="arquivo">Choose a file:</label>
+        <input type="file" class="inputs" name="csv-file" accept=".csv" required>
+        <button type="submit">Upload</button>
     </form>
-        </div>
-       
-    </div>
+
+</section>
+<i class="fas fa-arrow-left"></i>
+    <a href="/get_user_data" style="font-size: 3rem; color: #09114a; margin-left: 50%;">Back to Login</a>
         </section>
 <script>
     const body = document.querySelector("body"),

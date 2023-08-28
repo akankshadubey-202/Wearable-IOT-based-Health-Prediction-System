@@ -902,7 +902,7 @@ input {
     margin-left: 30%;
     position: absolute;
   width: 500px;
-  height: 500px;
+  height: 600px;
   border-radius: 20px;
   padding: 40px;
   box-sizing: border-box;
@@ -963,7 +963,6 @@ button {
   font-weight: 900;
   box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
   transition: 0.5s;
-  margin-top:20%;
 }
 
 button:hover {
@@ -991,13 +990,13 @@ h1 {
     </style>
 </head>
 <body>
-     <nav>
+   <nav>
         <div class="logo-name">
             <div class="logo-image">
                <img src="images/logo.png" alt="">
             </div>
 
-            <span class="logo_name">Medi Traker</span>
+            <span class="logo_name">Medi Buddy</span>
         </div>
 
         <div class="menu-items">
@@ -1012,11 +1011,11 @@ h1 {
                 </a></li>
                 <li><a href="/predictions">
                     <i class="uil uil-thumbs-up"></i>
-                    <span class="link-name">User Health Analysis</span>
+                    <span class="link-name">Health Analysis</span>
                 </a></li>
                 <li><a href="/upload">
                     <i class="uil uil-share"></i>
-                    <span class="link-name">Uplaod Report</span>
+                    <span class="link-name">Upload Report</span>
                 </a></li>
             </ul>
             
@@ -1055,11 +1054,15 @@ h1 {
     <div class="form_css">
         <div class="brand-title">PREDICTION</div>
         <div class="inputs">
-   <form action="/get_health_data" method="POST">
-    <label for="user_id">Enter User ID:</label>
-    <input type="text" id="user_id" name="user_id" required>
-    <button type="submit">Fetch Data</button>
+    <form method="POST" action="/predict">
+        <label for="user_id">User ID:</label>
+        <input type="text" id="user_id" name="user_id" required><br><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+        <button type="submit" value="Predict SpO2">Predict </button>
+        
     </form>
+    <button type="submit" id="trend" value="Trends">Trend Analysis</button>
         </div>
        
     </div>
@@ -1097,6 +1100,13 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
+
+document.getElementById("trend").addEventListener("click", function () {
+        var user_id = document.getElementById("user_id").value;
+        var date = document.getElementById("date").value;
+        var url = `/get_health_data?user_id=${user_id}`; // Construct the URL with parameters
+        window.location.href = url; // Redirect to the URL
+    });
 </script>
    
 </body>

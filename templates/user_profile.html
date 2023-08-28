@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,7 @@
     <title>Admin Dashboard Panel</title>
     <style>
         /* ===== Google Font Import - Poppins ===== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -586,6 +587,7 @@ ul li:before {
 
 .c-section {
     padding: 0 var(--s3);
+    margin-top: 40px;
 }
 
 .c-section__title {
@@ -890,44 +892,46 @@ ul li:before {
             text-decoration: none;
             color: inherit;
         }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
 input {
   caret-color: red;
 }
+
+.container {
+    margin-top: 5%;
+    position: relative;
+  width: 600px;
+  height: 720px;
+  border-radius: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+    background:url("https://media.istockphoto.com/id/911633218/vector/abstract-geometric-medical-cross-shape-medicine-and-science-concept-background.jpg?s=612x612&w=0&k=20&c=eYz8qm5xa5wbWCWKgjOpTamavekYv8XqPTA0MC4tHGA=") ;
+  background-size: cover;
+  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+}
+
+
+
+.brand-title {
+  margin-top: 10px;
+  font-weight: 900;
+  font-size: 4rem;
+  color: #061e2d;
+  letter-spacing: 1px;
+}
+
 .inputs {
   text-align: left;
   margin-top: 30px;
 }
-.form_css{
-    margin-top: 10%;
-    margin-left: 30%;
-    position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 20px;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-  background:url("https://media.istockphoto.com/id/911633218/vector/abstract-geometric-medical-cross-shape-medicine-and-science-concept-background.jpg?s=612x612&w=0&k=20&c=eYz8qm5xa5wbWCWKgjOpTamavekYv8XqPTA0MC4tHGA=") ;
-  background-size: cover;
-
-}
-.brand-title {
-  margin-top: 10px;
-  font-weight: 900;
-  font-size: 3rem;
-  color: #01263d;
-  letter-spacing: 1px;
-  text-align: center;
-}
 
 label, input, button {
-  display: block;
+  
   width: 100%;
   padding: 0;
   border: none;
   outline: none;
-  box-sizing: border-box;
   font-weight: 500;
 }
 
@@ -942,7 +946,9 @@ label:nth-of-type(2) {
 input::placeholder {
   color: gray;
 }
-
+.box2{
+    margin-top:10px;
+}
 input {
   background: #ecf0f3;
   padding: 10px;
@@ -950,12 +956,11 @@ input {
   height: 50px;
   font-size: 14px;
   border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
 }
 
 button {
   color: white;
-  margin-top: 20px;
+  margin-top: 50px;
   background: #1DA1F2;
   height: 40px;
   border-radius: 20px;
@@ -963,7 +968,6 @@ button {
   font-weight: 900;
   box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
   transition: 0.5s;
-  margin-top:20%;
 }
 
 button:hover {
@@ -991,13 +995,13 @@ h1 {
     </style>
 </head>
 <body>
-     <nav>
+      <nav>
         <div class="logo-name">
             <div class="logo-image">
                <img src="images/logo.png" alt="">
             </div>
 
-            <span class="logo_name">Medi Traker</span>
+            <span class="logo_name">Medi Buddy</span>
         </div>
 
         <div class="menu-items">
@@ -1012,11 +1016,11 @@ h1 {
                 </a></li>
                 <li><a href="/predictions">
                     <i class="uil uil-thumbs-up"></i>
-                    <span class="link-name">User Health Analysis</span>
+                    <span class="link-name">Health Analysis</span>
                 </a></li>
                 <li><a href="/upload">
                     <i class="uil uil-share"></i>
-                    <span class="link-name">Uplaod Report</span>
+                    <span class="link-name">Upload Report</span>
                 </a></li>
             </ul>
             
@@ -1051,18 +1055,52 @@ h1 {
         <i class="fas fa-arrow-left"></i>BACK
     </a>
         </div>
-         
-    <div class="form_css">
-        <div class="brand-title">PREDICTION</div>
-        <div class="inputs">
-   <form action="/get_health_data" method="POST">
-    <label for="user_id">Enter User ID:</label>
-    <input type="text" id="user_id" name="user_id" required>
-    <button type="submit">Fetch Data</button>
-    </form>
-        </div>
-       
+          <section class="c-section">
+    <div class="container">
+        <div class="brand-title">USER PROFILE</div>
+        <form action="/user-profile" method="POST">
+            <div class="inputs">
+                <label>Username</label>
+                <input type="text" id="username" name="username" placeholder="example_kd" />
+                <label>First Name</label>
+                <input type="text" id="first" name="first" placeholder="First Name" />
+                <label>Last Name</label>
+                <input type="text" id="last" name="last" placeholder="Last Name" />
+                <label>Age</label>
+                <input type="number" id="age" name="age" placeholder="Your Age" />
+                <div class="box1" style="display:flex; margin-top: 10px;">
+                <label for="gender_male">Male</label>
+                <input type="radio" name="gender" value="male" id="gender_male">
+                <label for="gender_female">Female</label>
+                <input type="radio" name="gender" value="female" id="gender_female">
+                </div>
+                <div class="box2" style="display: flex;">
+                <label for="Heart_Problems">Heart Problems:</label>
+                <input type="checkbox" name="Heart_Problems" value="Y"><br>
+                <label for="diabetes">Diabetes:</label>
+                <input type="checkbox" name="diabetes" value="Y"><br>
+                <label for="high_bp">High Blood Pressure:</label>
+                <input type="checkbox" name="high_bp" value="Y"><br>
+                <label for="low_bp">Low Blood Pressure:</label>
+                <input type="checkbox" name="low_bp" value="Y"><br>
+                <label for="obesity">Obesity:</label>
+                <input type="checkbox" name="obesity" value="Y"><br>
+                <label for="Asthma">Asthma:</label>
+                <input type="checkbox" name="Asthma" value="Y"><br>
+                <label for="none">None :</label>
+                <input type="checkbox" name="none" value="Y"><br>
+                </div>
+                <div class="box3" style="display: flex; padding: 10px;">
+                 <button type="submit" name="action" value="submit" style="margin-right: 5px;;">Submit</button>
+                <button type="submit" name="action" value="update">Update</button></div>
+                
+               
+            </div>
+        </form>
     </div>
+</section>
+
+
         </section>
 <script>
     const body = document.querySelector("body"),
@@ -1101,3 +1139,45 @@ sidebarToggle.addEventListener("click", () => {
    
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

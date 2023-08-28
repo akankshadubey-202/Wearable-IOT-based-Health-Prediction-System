@@ -11,11 +11,13 @@
             crossorigin="anonymous"></script>
      <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="home.css">
   <link rel="shortcut icon" href="./img/favicon-16x16.png" type="image/x-icon">
-  <script src="home.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
@@ -234,8 +236,6 @@ body.dark .switch:before{
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition: var(--tran-05);
-    background: url("https://st3.depositphotos.com/13349494/17896/i/450/depositphotos_178964958-stock-photo-container-scattered-pills-stethoscope-isolated.jpg");
-    background-size: cover;
 }
 nav.close ~ .dashboard{
     left: 73px;
@@ -889,109 +889,221 @@ ul li:before {
   a {
             text-decoration: none;
             color: inherit;
-        }
-input {
-  caret-color: red;
-}
-.inputs {
-  text-align: left;
-  margin-top: 30px;
-}
-.form_css{
-    margin-top: 10%;
-    margin-left: 30%;
-    position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 20px;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-  background:url("https://media.istockphoto.com/id/911633218/vector/abstract-geometric-medical-cross-shape-medicine-and-science-concept-background.jpg?s=612x612&w=0&k=20&c=eYz8qm5xa5wbWCWKgjOpTamavekYv8XqPTA0MC4tHGA=") ;
-  background-size: cover;
-
-}
-.brand-title {
-  margin-top: 10px;
-  font-weight: 900;
-  font-size: 3rem;
-  color: #01263d;
-  letter-spacing: 1px;
-  text-align: center;
+  }
+.containers{
+margin-top:5%;
+display: flex;
+justify-content: space-between;
+position: fixed;
+  }
+.card {
+ width: 900px;
+ height: 700px;
+ color: white;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ grid-template-rows: 1fr 1fr;
+ gap: 5px;
+ overflow: visible;
 }
 
-label, input, button {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  font-weight: 500;
+.card .item {
+ border-radius: 10px;
+ width: 100%;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
 }
 
-label {
-  margin-bottom: 4px;
+.item:hover {
+ transform: scale(0.95);
+ transition: all 0.3s;
 }
 
-label:nth-of-type(2) {
-  margin-top: 12px;
+.item svg {
+ width: 40px;
+ height: 40px;
+ margin-bottom: 7px;
 }
 
-input::placeholder {
-  color: gray;
+.item--1 {
+ background: #c7c7ff;
 }
 
-input {
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 50px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+.item--2 {
+ background: #ffd8be;
 }
 
-button {
-  color: white;
-  margin-top: 20px;
-  background: #1DA1F2;
-  height: 40px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 900;
-  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-  transition: 0.5s;
-  margin-top:20%;
+.item--3 {
+ background: #a9ecbf;
 }
 
-button:hover {
-  box-shadow: none;
+.item--4 {
+ background: #f3bbe1;
 }
 
-a {
+.quantity {
+ font-size: 25px;
+ font-weight: 600;
+}
+
+.text {
+ font-size: 12px;
+ font-family: inherit;
+ font-weight: 600;
+}
+
+.text--1 {
+ color: rgba(149,149,255,1);
+}
+
+.text--2 {
+ color: rgba(252,161,71,1);
+}
+
+.text--3 {
+ color: rgba(66,193,110,1);
+}
+
+.text--4 {
+ color: rgba(220,91,183,1);
+}
+.carding {
+  --background: #3ed3f4;
+  --cardShadow: rgba(32,33,37,.1);
+  --cardShadowHover: rgba(32,33,37,.06);
+  --cardShadowActive: rgba(32,33,37,.55);
+  --cardBorder: #dbdce0;
+  --cardBorderActive: #1a73e8;
+  --textColor: #202125;
+  --linkColor: #1967d2;
+  --ratingColor: #faab00;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    --background: #3c4043;
+    --cardShadow: rgba(0,0,0,.28);
+    --cardShadowHover: rgba(0,0,0,.16);
+    --cardShadowActive: rgba(0,0,0,.55);
+    --cardBorder: #202125;
+    --cardBorderActive: #8ab4f8;
+    --textColor: #e9eaee;
+    --linkColor: #8ab4f8;
+  }
+}
+
+.carding {
+   width: 500px;
+ height: 700px;
+  aspect-ratio: 2/3;
+  background: var(--background);
+  color: var(--textColor);
+  border: 1px solid var(--cardBorder);
+  padding: 25px;
+  box-shadow: 8px 8px 0 var(--cardShadow);
+  transition: box-shadow .5s, transform .5s;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.carding:hover {
+  transform: translate(-2px, -4px);
+  box-shadow: 16px 16px 0 var(--cardShadowHover);
+}
+
+.carding:active {
+  transform: translate(-2px, -4px);
+  border: 2px solid var(--cardBorderActive);
+  box-shadow: 4px 4px 0 var(--cardShadowActive);
+}
+
+.carding > .icon,
+.carding > .title,
+.carding > .description {
+  margin-bottom: 0.7em;
+  cursor: default;
+  user-select: none;
+}
+
+.carding > .title {
+  margin-top: 1.5em;
+  font-weight: bold;
+}
+
+.carding > .description {
+  line-height: 1.5em;
+  min-height: 6em;
+}
+
+.carding > .icon {
+  font-size: 3em;
+  margin-bottom: .2em;
+}
+
+.carding > .rating {
+  font-size: 1.5em;
+  margin-bottom: 0.8em;
+  color: var(--ratingColor);
+  font-weight: bold;
+  position: relative;
+  width: max-content;
+}
+
+.carding > .rating:before {
+  content: "☆☆☆☆☆";
+}
+
+.carding > .rating:after {
+  content: "★★★★★";
   position: absolute;
-  font-size: 8px;
-  bottom: 4px;
-  right: 4px;
-  text-decoration: none;
-  color: black;
- 
-  border-radius: 10px;
-  padding: 2px;
+  left: 0;
+  z-index: 0;
+  width: calc(var(--rating) * 1%);
+  overflow: hidden;
 }
 
-h1 {
+.carding > .link {
+  margin-bottom: 1rem;
+  color: var(--linkColor);
+  font-size: .8em;
+  font-weight: 600;
+}
+
+/* Optional ~ Link the whole card */
+.carding > .link::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.carding > .link:after {
+  content: "↗";
+  display: inline-block;
+  margin-left: .3em;
+  transition: transform .3s ease-in-out;
+}
+
+.carding:hover > .link:after {
+  transform: translate(.2em, -.2em);
+}
+.heading
+{
+    font-size: 4rem;
+    text-decoration: double;
+    color: white;
+    text-decoration: #030746;
 }
 
     </style>
 </head>
 <body>
-     <nav>
+      <nav>
         <div class="logo-name">
             <div class="logo-image">
                <img src="images/logo.png" alt="">
@@ -1051,18 +1163,70 @@ h1 {
         <i class="fas fa-arrow-left"></i>BACK
     </a>
         </div>
-         
-    <div class="form_css">
-        <div class="brand-title">PREDICTION</div>
-        <div class="inputs">
-   <form action="/get_health_data" method="POST">
-    <label for="user_id">Enter User ID:</label>
-    <input type="text" id="user_id" name="user_id" required>
-    <button type="submit">Fetch Data</button>
-    </form>
-        </div>
-       
-    </div>
+   <div class="containers">
+<div class="carding" style="--rating:90">
+  <div class="title" style="margin-left: 20%;">
+    <h1 class="heading">USER PROFILE</h1></div>
+        <p>USER ID : {{user_id}}</p>
+        <p>USERNAME : {{username}}</p>
+        <p>DATE : {{date}} </p>
+</div>
+
+ <div class="card">
+  <div class="item item--1">
+    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path fill="rgba(149,149,255,1)" d="M17 15.245v6.872a.5.5 0 0 1-.757.429L12 20l-4.243 2.546a.5.5 0 0 1-.757-.43v-6.87a8 8 0 1 1 10 0zm-8 1.173v3.05l3-1.8 3 1.8v-3.05A7.978 7.978 0 0 1 12 17a7.978 7.978 0 0 1-3-.582zM12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path></svg>
+    <span class="quantity"> 90+ </span>
+    <h1>SpO2 Prediction Result</h1>
+    <p>Input SpO2 value: {{ spo2 }}</p>
+    <p>Risk level: {{ result4 }}</p>
+    <span class="text text--1"> Icons </span>
+  </div>
+  <div class="item item--2">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0L24 0 24 24 0 24z"></path><path d="M16 16c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zM6 12c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm10 6c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1zM6 14c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm8.5-12C17.538 2 20 4.462 20 7.5S17.538 13 14.5 13 9 10.538 9 7.5 11.462 2 14.5 2zm0 2C12.567 4 11 5.567 11 7.5s1.567 3.5 3.5 3.5S18 9.433 18 7.5 16.433 4 14.5 4z" fill="rgba(252,161,71,1)"></path></svg>    <span class="quantity"> 70+ </span>
+    <span class="text text--2"> Illustrations </span>
+     <h1>Temperature Prediction Result</h1>
+    <p>Entered Temperature: {{ temp }}</p>
+    <p>Prediction: {{ result5 }}</p>
+  </div>
+  <div class="item item--3">
+    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path fill="rgba(66,193,110,1)" d="M20.083 15.2l1.202.721a.5.5 0 0 1 0 .858l-8.77 5.262a1 1 0 0 1-1.03 0l-8.77-5.262a.5.5 0 0 1 0-.858l1.202-.721L12 20.05l8.083-4.85zm0-4.7l1.202.721a.5.5 0 0 1 0 .858L12 17.65l-9.285-5.571a.5.5 0 0 1 0-.858l1.202-.721L12 15.35l8.083-4.85zm-7.569-9.191l8.771 5.262a.5.5 0 0 1 0 .858L12 13 2.715 7.429a.5.5 0 0 1 0-.858l8.77-5.262a1 1 0 0 1 1.03 0zM12 3.332L5.887 7 12 10.668 18.113 7 12 3.332z"></path></svg>
+    <span class="quantity"> 150+ </span>
+    <span class="text text--3"> Components </span>
+    <h1>Heart Rate Prediction Result</h1>
+    <p>Entered Heart Rate : {{ heart}}</p>
+    <p>Prediction res: {{ result1 }}</p>
+  </div>
+  <div class="item item--4">
+    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path fill="rgba(220,91,183,1)" d="M12 20h8v2h-8C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10a9.956 9.956 0 0 1-2 6h-2.708A8 8 0 1 0 12 20zm0-10a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"></path></svg>
+    <span class="quantity"> 30+ </span>
+    <span class="text text--4"> Animations </span>
+    <h1>Blood Pressure Prediction Result</h1>
+    <p>Upper BP : {{ upper_bp }}</p>
+    <p>Lower BP: {{ lower_bp }}</p>
+    <p>Prediction res: {{result2}}</p>
+  </div>
+  <div class="item item--4">
+    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path fill="rgba(220,91,183,1)" d="M12 20h8v2h-8C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10a9.956 9.956 0 0 1-2 6h-2.708A8 8 0 1 0 12 20zm0-10a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"></path></svg>
+    <span class="quantity"> 30+ </span>
+    <span class="text text--4"> Animations </span>
+    <h1>Respiratory Prediction Result</h1>
+    <p>Rate: {{ Respiratory_Rate }}</p>
+    <p>Prediction res: {{result3}}</p>
+  </div>
+  <div class="item item--4">
+    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path fill="rgba(220,91,183,1)" d="M12 20h8v2h-8C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10a9.956 9.956 0 0 1-2 6h-2.708A8 8 0 1 0 12 20zm0-10a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm8 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm-4 4a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"></path></svg>
+    <span class="quantity"> 30+ </span>
+    <span class="text text--4"> Animations </span>
+    <h1>Final Result</h1>
+    <p>Score : {{ score }}</p>
+    <p>Prediction res: {{prediction}}</p>
+  </div>
+   </div> 
+
+   <!---<button type="submit" id="download-button" value="Trends">Download</button> --->
+</div>
+
+
         </section>
 <script>
     const body = document.querySelector("body"),
@@ -1097,7 +1261,16 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
+
+/*document.getElementById("download-button").addEventListener("click", function () {
+        var user_id = document.getElementById("user_id").value;
+        var date = document.getElementById("date").value;
+        var url = `/generate_pdf?user_id=${data[user_id]}`; // Construct the URL with parameters
+        window.location.href = url; // Redirect to the URL
+    });*/
 </script>
+    
+
    
 </body>
 </html>
