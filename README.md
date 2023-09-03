@@ -25,4 +25,11 @@ These technologies come together to create a comprehensive web-based application
 
 ![image](https://github.com/akankshadubey-202/Wearable-IOT-based-Health-Prediction-System/assets/91489416/c8d5d439-d14b-4903-a26b-86094548b4e4)
 
+To get started with this project, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Install the necessary dependencies using `pip install -r requirements.txt`.
+3. Run the Flask application using main.py
+4. Access the system by opening a web browser and navigating to the appropriate URL.
+
 
