@@ -399,7 +399,10 @@ def predict():
         # Fetch SpO2 data from health_data associated with the user_id and date
         health_data = fetch_health_data(user_id, date)
         user_info=fetch_user_data(user_id)
-        
+        username=user_info['username'].values[0]
+        first=user_info['first_name'].values[0]
+        last=user_info['last_name'].values[0]
+        age = user_info['age'].values[0]
         Respiratory_Rate=health_data['Respiratory_Rate'].values[0]
         spo2 = health_data['Spo2'].values[0]  # Assuming 'spo2' is a column in health_data
         temp=health_data['Temperature'].values[0]
@@ -408,7 +411,8 @@ def predict():
         upper_bp=health_data['High_BP'].values[0]
         lower_bp=health_data['Low_BP'].values[0] 
            # Fetch user information from user_info based on user_id and username
-        age = user_info['age'].values[0]
+       
+        gender=user_info['gender'].values[0]
          
         input_data1 = np.array([heart]).reshape(1, -1)  # Example
            # Make predictions using your loaded spo2 model
@@ -454,17 +458,17 @@ def predict():
         # Make predictions using the SPO2 loaded model
         dict={ 'user_id' : user_id,'date':date,'spo2':spo2,'heart':heart,'Respiratory_Rate':Respiratory_Rate,'upper_bp':upper_bp,'lower_bp':lower_bp,
                                'temp':temp,'result1':result1,'result2':result2,'result3':result3,'result4':result4,'result5':result5,
-                               'prediction':prediction,'score':score
+                               'prediction':prediction,'score':score,'username':username,'age':age,'gender':gender,'first':first,'last':last
          }
         
         return render_template("spo2_result.html", user_id=user_id,date=date, 
                                spo2=spo2,heart=heart,Respiratory_Rate=Respiratory_Rate,upper_bp=upper_bp,lower_bp=lower_bp,
                                temp=temp,result1=result1,result2=result2,result3=result3,result4=result4,result5=result5,
-                               prediction=prediction,score=score , data=dict
+                               prediction=prediction,score=score ,data=dict,username=username,first=first,last=last,gender=gender,age=age
                                )
         
     else:
-       return render_template("home.html")
+       return render_template("error.html")
 
 
 
