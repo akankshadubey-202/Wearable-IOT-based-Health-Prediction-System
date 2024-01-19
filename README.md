@@ -16,7 +16,7 @@ The project leverages various technologies and frameworks, including:
 - Flask
 - SQLite3
 
-These technologies come together to create a comprehensive web-based application. The webpages are responsible for presenting the health data and risk detection alerts to users in a visually appealing manner. The use of SQLite3 for the database enhances the system's capabilities for data storage and retrieval.
+These technologies come together to create a comprehensive web-based application. The webpages are responsible for presenting health data and risk detection alerts to users visually appealingly. Using SQLite3 for the database enhances the system's data storage and retrieval capabilities.
 
 ## Snapshot
 ![image](https://github.com/akankshadubey-202/Wearable-IOT-based-Health-Prediction-System/assets/91489416/09bc9110-c6b1-46cf-bca1-47a36c3c3757)
